@@ -19,17 +19,20 @@ Part 2 / API design
     - Path: <your domain here>/api/v1/articles/{articleId}/bookmark
     - Request Body (no need since the article id is already in the url parameters)
     - Response (I usually want the below response format if I were to design the BE response as well)
-     - {
+    - {
+
         data: {<this is optional but is really not needed but if you really want to put the Article data here>} // alternatively this is where you would put an error message if there was an error
+
         success: boolean // this is just to show if the request was a success or not
-     }
+  
+      }
 
      if success:
      data: {
-        id: String
-        title: String
-        author: String
-        preview: String
+        id: String,
+        title: String,
+        author: String,
+        preview: String,
      }
 
      if error:
@@ -38,13 +41,13 @@ Part 2 / API design
         message: 'Something went wrong with server'
      }
  - How to ensure user can't save an article twice
-  - in a middleware in API check in database relationship if User already has a "saved" relationship to an Article if so then return a 400 error and say something like "Already bookmarked" but really the FE should already handle through the UI to show that the user has already saved something
+   - in a middleware in API check in database relationship if User already has a "saved" relationship to an Article if so then return a 400 error and say something like "Already bookmarked" but really the FE should already handle through the UI to show that the user has already saved something
  - simple schema to show many is to many relationship of user to articles (many user has many saved articles)
    - saved_articles
-    - id: String
-    - user_id: String
-    - article_id: String
-    - created_at: DateTime
+     - id: String
+     - user_id: String
+     - article_id: String
+     - created_at: DateTime
  - if a request just so happens to call the server just barely after an article is deleted, then the  article_id should now no longer be found on database and middleware should throw error exception saying that the article is now no longer found, in that case send 404 response with corresponding message, it is now up to the UI to either just show as toast the message or to also remove from the list the article
 
 Part 3 / Your thinking
