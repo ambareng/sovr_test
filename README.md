@@ -21,10 +21,10 @@ Part 2 / API design
     - Response (I usually want the below response format if I were to design the BE response as well)
     - {
 
-        data: {<this is optional but is really not needed but if you really want to put the Article data here>} // alternatively this is where you would put an error message if there was an error
-
+        data: {this is optional but is really not needed but if you really want to put the Article data here} can be null
         success: boolean // this is just to show if the request was a success or not
-  
+        code: 200 // this is just the code of the response/it can be a normal HTTP code if the FE is looking for a specific error code it can be something like HEJ4k as well
+        message: String // just a string can be success message or error message
       }
 
      if success:
@@ -36,10 +36,7 @@ Part 2 / API design
      }
 
      if error:
-     data: {
-        code: 400,
-        message: 'Something went wrong with server'
-     }
+     data: null
  - How to ensure user can't save an article twice
    - in a middleware in API check in database relationship if User already has a "saved" relationship to an Article if so then return a 400 error and say something like "Already bookmarked" but really the FE should already handle through the UI to show that the user has already saved something
  - simple schema to show many is to many relationship of user to articles (many user has many saved articles)
