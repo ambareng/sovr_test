@@ -22,9 +22,14 @@ Part 2 / API design
     - {
 
         data: {this is optional but is really not needed but if you really want to put the Article data here} can be null
+
         success: boolean // this is just to show if the request was a success or not
-        code: 200 // this is just the code of the response/it can be a normal HTTP code if the FE is looking for a specific error code it can be something like HEJ4k as well
+
+
+        code: 200 // this is just the code of the response/it can be a normal HTTP code if the FE is looking for a specific error code it can be something like a specific string error code like HEJ4K as well
+
         message: String // just a string can be success message or error message
+
       }
 
      if success:
